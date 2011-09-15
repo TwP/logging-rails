@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate logging:install
+
+    This will create:
+        config/logging.rb
