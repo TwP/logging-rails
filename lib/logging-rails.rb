@@ -1,1 +1,1 @@
-require 'logging/rails.rb'
+require File.expand_path('../logging/rails.rb', __FILE__)
