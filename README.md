@@ -1,7 +1,8 @@
 logging-rails
 =============
 
-A Railtie for for integrating the [Logging](https://github.com/TwP/logging) framework into your Rails 3 application.
+A Railtie for for integrating the [Logging](https://github.com/TwP/logging)
+framework into your Rails 3 application.
 
 Features
 --------
@@ -16,7 +17,8 @@ gem 'logging-rails', :require => 'logging/rails'
 ````
 
 A generator is included with the railtie that will create a ```config/logging.rb```
-configuration file for use in your rails project.
+configuration file for use in your rails project. Please run this generator
+before attempting use the logging framework.
 
 ```
 rails generate logging:install
@@ -24,6 +26,11 @@ rails generate logging:install
 
 Usage
 -----
+
+Out of the box, the Logging framework is configured to behave in the same way
+as the standard Rails logger setup. The major exception is that the log file
+will be rolled daily - gone are the days of 2GB log files on production
+servers.
 
 config.log_to
 
@@ -43,7 +50,7 @@ License
 
 The MIT License
 
-Copyright (c) 2011 by Tim Pease
+Copyright © 2011 by Tim Pease
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
