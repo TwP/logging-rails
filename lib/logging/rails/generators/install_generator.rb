@@ -6,7 +6,7 @@ module Logging::Rails
       source_root File.expand_path('../templates', __FILE__)
 
       def generate_config
-        copy_file 'logging.rb', 'config/logging.rb'
+        template 'logging.rb.erb', 'config/logging.rb'
       end
     end
   end

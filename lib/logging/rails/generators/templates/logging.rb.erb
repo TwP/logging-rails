@@ -42,7 +42,7 @@ Logging::Rails.configure do |config|
   # formatting log events into strings.
   #
   Logging.appenders.rolling_file( 'file',
-    :filename => config.paths['log'].first,
+    :filename => config.paths<%= Rails.version < "3.1" ? ".log" : "['log']" %>.first,
     :keep => 7,
     :age => 'daily',
     :truncate => false,
