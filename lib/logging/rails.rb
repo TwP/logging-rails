@@ -1,5 +1,6 @@
 
 require 'logging'
+include Logging.globally
 
 module Logging::Rails
 
