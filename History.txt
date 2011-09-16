@@ -1,4 +1,11 @@
-== 0.1.0 / 2011-09-13
+== 0.2.0 / 2011-09-16
+
+Enhancements
+- Using the ActionMailer smtp settings
+- Sanity checks for Rails and Rails.version
+- Handling difference in "config.paths" between Rails 3.0 and Rails 3.1
+
+== 0.1.0 / 2011-09-16
 
 Enhancements
 - Birthday!
