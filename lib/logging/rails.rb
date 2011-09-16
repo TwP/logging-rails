@@ -58,7 +58,7 @@ module Logging::Rails
 
   libpath {
     require 'logging/rails/railtie'
-    require 'logging/rails/controller_mixin'
+    require 'logging/rails/mixin'
   }
 
 end  # Logging::Rails
