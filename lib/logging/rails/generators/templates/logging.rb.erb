@@ -56,14 +56,14 @@ Logging::Rails.configure do |config|
   # is done to prevent a flood of messages.
   #
   Logging.appenders.email( 'email',
-    :from     => 'server@example.com',
-    :to       => 'developers@example.com',
-    :server   => 'smtp.example.com',
-    :domain   => 'example.com',
-    :acct     => 'server@example.com',
-    :passwd   => 'password',
+    :from     => "server@#{config.action_mailer.smtp_settings[:domain]}",
+    :to       => "developers@#{config.action_mailer.smtp_settings[:domain]}",
     :subject  => "Rails Error [#{%x(uname -n).strip}]",
-    :authtype => :login,
+    :server   => config.action_mailer.smtp_settings[:address],
+    :domain   => config.action_mailer.smtp_settings[:domain],
+    :acct     => config.action_mailer.smtp_settings[:user_name],
+    :passwd   => config.action_mailer.smtp_settings[:password],
+    :authtype => config.action_mailer.smtp_settings[:authentication],
 
     :auto_flushing => 200,     # send an email after 200 messages have been buffered
     :flush_period  => 60,      # send an email after one minute
