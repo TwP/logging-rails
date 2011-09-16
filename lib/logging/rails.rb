@@ -15,7 +15,9 @@ module Logging::Rails
       @version ||= File.read(path('version.txt')).strip
     end
 
-    #
+    # Stores the given Logging configuration block for later evalution by the
+    # Railtie. This method is used in the 'config/logging.rb' configuration
+    # file.
     #
     def configure( &block )
       @configuration = block

@@ -1,48 +1,47 @@
 logging-rails
-===========
+=============
 
-FIXME (describe your package)
-
-Features
---------
-
-* FIXME (list of features and unsolved problems)
-
-Examples
---------
-
-    FIXME (code sample of usage)
-
-Requirements
-------------
-
-* FIXME (list of requirements)
+A Railtie for for integrating the [Logging][https://github.com/TwP/logging] framework into your Rails 3 application.
 
 Install
 -------
 
-* FIXME (sudo gem install, anything else)
+Add the ```logging-rails``` railtie gem to your rails project's Gemfile and run ```bundle install```.
+
+```ruby
+gem 'logging-rails', :require => 'logging/rails'
+````
+
+A generator is included with the railtie that will create a ```config/logging.rb```
+configuration file for use in your rails project.
+
+```
+rails generate logging:install
+```
+
+Usage
+-----
+
 
 Author
 ------
 
-Original author: FIXME (author's name)
+Original author: [Elliot Winkler][https://github.com/mcmire]
 
 Contributors:
 
-* FIXME (contributor 1?)
-* FIXME (contributor 2?)
+* [Tim Pease][https://github.com/TwP]
 
 License
 -------
 
-(The MIT License) FIXME (different license?)
+The MIT License
 
-Copyright (c) 2011 FIXME (author's name)
+Copyright (c) 2011 by Tim Pease
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
+*Software*), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
