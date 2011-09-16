@@ -1,7 +1,10 @@
 logging-rails
 =============
 
-A Railtie for for integrating the [Logging][https://github.com/TwP/logging] framework into your Rails 3 application.
+A Railtie for for integrating the [Logging](https://github.com/TwP/logging) framework into your Rails 3 application.
+
+Features
+--------
 
 Install
 -------
@@ -22,15 +25,18 @@ rails generate logging:install
 Usage
 -----
 
+config.log_to
+
+Logging.logger['ModelName'].level = :debug
 
 Author
 ------
 
-Original author: [Elliot Winkler][https://github.com/mcmire]
+Original author: [Elliot Winkler](https://github.com/mcmire)
 
 Contributors:
 
-* [Tim Pease][https://github.com/TwP]
+* [Tim Pease](https://github.com/TwP)
 
 License
 -------
