@@ -1,5 +1,5 @@
 Description:
-    Explain the generator
+    Generates the configuration file used by the Logging framework.
 
 Example:
     rails generate logging:install
