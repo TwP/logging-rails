@@ -1,12 +1,4 @@
 
-if !defined? Rails or Rails.version
-  abort('The Logging Railtie only works in the context of a Rails application')
-end
-
-if Rails.version < '3'
-  abort("The Logging Railtie only works with Rails 3 or higher - you are running Rails #{Rails.version}")
-end
-
 module Logging::Rails
 
   # The Railtie is used to inject the Logging framework into the Rails
