@@ -1,3 +1,10 @@
+== 0.3.0 / 2011-09-19
+
+Enhancements
+- Appending default "log_to" destinations to the configuration files
+- Remove the LogTail middleware if present
+- Removing the Rails version check
+
 == 0.2.0 / 2011-09-16
 
 Enhancements
