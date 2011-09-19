@@ -2,6 +2,12 @@
 require 'logging'
 include Logging.globally
 
+require 'rails' if !defined? Rails or Rails.version
+
+if Rails.version < '3'
+  abort("The Logging Railtie only works with Rails 3 or higher - you are running Rails #{Rails.version}")
+end
+
 module Logging::Rails
 
   # :stopdoc:
@@ -65,4 +71,21 @@ module Logging::Rails
   }
 
 end  # Logging::Rails
+
+
+# Here we need to remove the Rails LogTailer from the list of middlewares. The
+# Logging framework is fully capable of sending log events to multiple logging
+# destinations.
+#
+module Rails
+  class Server < ::Rack::Server
+    def middleware_without_log_tailer
+      middlewares = middleware_with_log_tailer['anything']
+      middlewares.delete_if { |middleware| Rails::Rack::LogTailer == middleware.first }
+      Hash.new(middlewares)
+    end
+    alias :middleware_with_log_tailer :middleware
+    alias :middleware :middleware_without_log_tailer
+  end
+end
 
