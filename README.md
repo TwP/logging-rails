@@ -27,14 +27,58 @@ rails generate logging:install
 Usage
 -----
 
-Out of the box, the Logging framework is configured to behave in the same way
-as the standard Rails logger setup. The major exception is that the log file
-will be rolled daily - gone are the days of 2GB log files on production
+Out of the box, the **Logging** framework is configured to behave in the same
+way as the standard Rails logger setup. The major exception is that the log
+file will be rolled daily - gone are the days of 2GB log files on production
 servers.
 
-config.log_to
+The railtie adds a configuration option, ```log_to```, that determines where
+log messages will be sent. This is an array of appender names (an appender
+writes log messages to some destination such as a file, STDOUT, syslog, email,
+etc.). The appender configuration should be set in your environment specific
+configuration file. For example, in production we would want to log to a file
+and send emails on error:
 
-Logging.logger['ModelName'].level = :debug
+```ruby
+config.log_to = %w[file email]
+```
+
+The **Logging** framework sets the global log level from the ```log_level```
+configuration item. However, each class can be assigned its own log level.
+This is very useful when debugging a single controller or model in your
+Rails application. Consider the example below. The overall log level for the
+application is set to ```:info```, but the log level for the *User* model and
+controller is set to ```:debug```.
+
+```ruby
+config.log_level = :info
+Logging.logger['User'].level = :debug
+Logging.logger['UserController'].level = :debug
+```
+
+When using the logging railtie, a small display of the current logging
+configuration will be displayed when the Rails logger is in the debug mode.
+A description of the display can be found [here](https://github.com/TwP/logging/blob/master/lib/logging.rb#L400).
+
+```
+root  ............................................  *debug      -T
+- <Appenders::Stdout:0x806bc058 name="stdout">
+- <Appenders::RollingFile:0x806bbc0c name="file">
+  ActionController::Base  ........................   debug  +A  -T
+  ActiveRecord::Base  ............................   debug  +A  -T
+  ActiveSupport::Cache::FileStore  ...............   debug  +A  -T
+  ActiveSupport::Dependencies  ...................   debug  +A  -T
+  Logging  .......................................    *off  -A  -T
+  Rails  .........................................   debug  +A  -T
+```
+
+This is useful for understanding more complex logging configurations. It can
+be annoying in day-to-day usage. The soluation is to set the Rails logger to
+```:info``` or higher.
+
+```ruby
+Logging.logger['Rails'].level = :info
+```
 
 Author
 ------
