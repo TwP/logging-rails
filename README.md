@@ -7,18 +7,24 @@ framework into your Rails 3 application.
 Features
 --------
 
+The railtie provides only one feature - integration of the **Logging**
+framework into your Rails appcliation. But this gives you quite a bit of
+flexibility to format your log messages and direct them to multiple logging
+destiations: stdout with colors, a rolling log file, email, or even get a
+growl notification.
+
 Install
 -------
 
-Add the ```logging-rails``` railtie gem to your rails project's Gemfile and run ```bundle install```.
+Add the ```logging-rails``` railtie gem to your Rails project's Gemfile and run ```bundle install```.
 
 ```ruby
 gem 'logging-rails', :require => 'logging/rails'
 ````
 
 A generator is included with the railtie that will create a ```config/logging.rb```
-configuration file for use in your rails project. Please run this generator
-before attempting use the logging framework.
+configuration file for use in your Rails project. Please run this generator
+before attempting to use the **Logging** framework.
 
 ```
 rails generate logging:install
