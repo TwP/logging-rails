@@ -97,9 +97,9 @@ Logging::Rails.configure do |config|
   #
   # The rolling file appender uses shared file locks to ensure that only one
   # process will roll the log file. Each process writing to the file must have
-  # its own open file descriptor for flock to function properly. Reopening the
-  # file descriptors afte forking ensure that each worker has a unique file
-  # descriptor.
+  # its own open file descriptor for `flock` to function properly. Reopening
+  # the file descriptors after forking ensures that each worker has a unique
+  # file descriptor.
   #
   if defined?(PhusionPassenger)
     PhusionPassenger.on_event(:starting_worker_process) do |forked|
