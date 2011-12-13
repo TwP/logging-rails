@@ -16,7 +16,8 @@ module Logging::Rails
     # extend the including class so it also has a class-level `logger` method.
     #
     def self.included( other )
-      other.__send__(:remove_method, :logger) if other.instance_methods.include? :logger
+      logger_method = RUBY_VERSION < '1.9' ? 'logger' : :logger
+      other.__send__(:remove_method, :logger) if other.instance_methods.include? logger_method
       other.extend self
     end
 
@@ -25,8 +26,9 @@ module Logging::Rails
     # version.
     #
     def self.extended( other )
+      logger_method = RUBY_VERSION < '1.9' ? 'logger' : :logger
       eigenclass = class << other; self; end
-      eigenclass.__send__(:remove_method, :logger) if eigenclass.instance_methods.include? :logger
+      eigenclass.__send__(:remove_method, :logger) if eigenclass.instance_methods.include? logger_method
     end
 
     # Returns the logger instance.
