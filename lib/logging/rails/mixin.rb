@@ -12,12 +12,13 @@ module Logging::Rails
   #
   module Mixin
 
+    LOGGER_METHOD = RUBY_VERSION < '1.9' ? 'logger' : :logger
+
     # This method is called when the module is included into a class. It will
     # extend the including class so it also has a class-level `logger` method.
     #
     def self.included( other )
-      logger_method = RUBY_VERSION < '1.9' ? 'logger' : :logger
-      other.__send__(:remove_method, :logger) if other.instance_methods.include? logger_method
+      other.__send__(:remove_method, LOGGER_METHOD.to_sym) if other.instance_methods.include? LOGGER_METHOD
       other.extend self
     end
 
@@ -26,9 +27,8 @@ module Logging::Rails
     # version.
     #
     def self.extended( other )
-      logger_method = RUBY_VERSION < '1.9' ? 'logger' : :logger
       eigenclass = class << other; self; end
-      eigenclass.__send__(:remove_method, :logger) if eigenclass.instance_methods.include? logger_method
+      eigenclass.__send__(:remove_method, LOGGER_METHOD.to_sym) if eigenclass.instance_methods.include? LOGGER_METHOD
     end
 
     # Returns the logger instance.
