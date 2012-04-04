@@ -1,3 +1,12 @@
+== 0.4.0 / 2012-04-04
+
+Enhancements
+- Compatibility with Ruby 1.8.7 [issue #2]
+- Showing logging configuration is now optional
+
+Bug Fixes
+- Update "logging" depedency to any 1.X gem release
+
 == 0.3.0 / 2011-09-19
 
 Enhancements
