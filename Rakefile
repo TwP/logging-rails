@@ -1,4 +1,3 @@
-
 begin
   require 'bones'
 rescue LoadError
@@ -15,6 +14,6 @@ Bones {
 
   use_gmail
 
-  depend_on 'logging', '~> 1.6.1'
+  depend_on 'logging', '>= 1.6.1'
 }
 

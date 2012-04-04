@@ -1,3 +1,8 @@
+== 0.3.1 / 2012-04-04
+
+Minor Update
+- Switched logging gem dependency from ~> 1.6.1 to >= 1.6.1 to allow usage of newer logging gem version
+
 == 0.3.0 / 2011-09-19
 
 Enhancements
