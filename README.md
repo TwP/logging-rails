@@ -63,8 +63,9 @@ Logging.logger['UserController'].level = :debug
 ```
 
 When using the logging railtie, a small display of the current logging
-configuration will be displayed when the Rails logger is in the debug mode.
-A description of the display can be found [here](https://github.com/TwP/logging/blob/master/lib/logging.rb#L400).
+configuration will be displayed when Rails is in development mode
+(environment). A description of the display can be found
+[here](https://github.com/TwP/logging/blob/master/lib/logging.rb#L400).
 
 ```
 root  ............................................  *debug      -T
@@ -79,11 +80,11 @@ root  ............................................  *debug      -T
 ```
 
 This is useful for understanding more complex logging configurations. It can
-be annoying in day-to-day usage. The soluation is to set the Rails logger to
-```:info``` or higher.
+be annoying in day-to-day usage. To disable, set the ```show_log_configuration```
+setting to false in the environment specific configuration file.
 
 ```ruby
-Logging.logger['Rails'].level = :info
+config.show_log_configuration = false
 ```
 
 Author
@@ -100,7 +101,7 @@ License
 
 The MIT License
 
-Copyright © 2011 by Tim Pease
+Copyright © 2011-2012 by Tim Pease
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

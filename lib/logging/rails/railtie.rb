@@ -12,6 +12,7 @@ module Logging::Rails
 
     config.before_configuration do
       config.log_to = %w[file]
+      config.show_log_configuration = false
     end
 
     initializer 'logging.configure', :before => 'initialize_logger' do |app|
@@ -44,8 +45,10 @@ module Logging::Rails
       ::Rails.cache.logger = ::Logging::Logger[::Rails.cache]
     end
 
-    config.after_initialize do
-      ::Logging.show_configuration if ::Logging::Logger[::Rails].debug?
+    config.after_initialize do |app|
+      if app.config.show_log_configuration and (STDIN.tty? or defined?(Rails::Console))
+        ::Logging.show_configuration(STDERR)
+      end
     end
 
   end  # Railtie
