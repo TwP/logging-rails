@@ -8,9 +8,9 @@ Features
 --------
 
 The railtie provides only one feature - integration of the **Logging**
-framework into your Rails appcliation. But this gives you quite a bit of
+framework into your Rails application. But this gives you quite a bit of
 flexibility to format your log messages and direct them to multiple logging
-destiations: stdout with colors, a rolling log file, email, or even get a
+destinations: stdout with colors, a rolling log file, email, or even get a
 growl notification.
 
 Install
