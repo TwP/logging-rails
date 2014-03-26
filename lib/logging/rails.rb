@@ -1,6 +1,5 @@
 
 require 'logging'
-include Logging.globally
 
 require 'rails' if !defined? Rails or Rails.version
 
