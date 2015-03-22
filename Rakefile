@@ -15,6 +15,6 @@ Bones {
 
   use_gmail
 
-  depend_on 'logging', '~> 1.6'
+  depend_on 'logging', '> 1.6'
 }
 
