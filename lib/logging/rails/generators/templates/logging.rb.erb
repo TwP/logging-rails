@@ -1,7 +1,9 @@
-
 Logging::Rails.configure do |config|
 
-  # Objects will be converted to strings using the :format_as method.
+  # Configure the Logging framework with the default log levels
+  Logging.init %w[debug info warn error fatal]
+
+  # Objects will be converted to strings using the :inspect method.
   Logging.format_as :inspect
 
   # The default layout used by the appenders.
@@ -11,7 +13,6 @@ Logging::Rails.configure do |config|
   # to the pattern layout. Color schemes should only be used with appenders
   # that write to STDOUT or STDERR; inserting terminal color codes into a file
   # is generally considered bad form.
-  #
   Logging.color_scheme( 'bright',
     :levels => {
       :info  => :green,
@@ -27,7 +28,6 @@ Logging::Rails.configure do |config|
   # Configure an appender that will write log events to STDOUT. A colorized
   # pattern layout is used to format the log events into strings before
   # writing.
-  #
   Logging.appenders.stdout( 'stdout',
     :auto_flushing => true,
     :layout => Logging.layouts.pattern(
@@ -40,7 +40,6 @@ Logging::Rails.configure do |config|
   # be rolled on a daily basis, and the past 7 rolled files will be kept.
   # Older files will be deleted. The default pattern layout is used when
   # formatting log events into strings.
-  #
   Logging.appenders.rolling_file( 'file',
     :filename => config.paths<%= Rails.version < "3.1" ? ".log" : "['log']" %>.first,
     :keep => 7,
@@ -50,11 +49,15 @@ Logging::Rails.configure do |config|
     :layout => layout
   ) if config.log_to.include? 'file'
 
+=begin
+  # NOTE: You will need to install the `logging-email` gem to use this appender
+  # with loggging-2.0. The email appender was extracted into a plugin gem. That
+  # is the reason this code is commented out.
+  #
   # Configure an appender that will send an email for "error" and "fatal" log
   # events. All other log events will be ignored. Furthermore, log events will
   # be buffered for one minute (or 200 events) before an email is sent. This
   # is done to prevent a flood of messages.
-  #
   Logging.appenders.email( 'email',
     :from     => "server@#{config.action_mailer.smtp_settings[:domain]}",
     :to       => "developers@#{config.action_mailer.smtp_settings[:domain]}",
@@ -70,6 +73,7 @@ Logging::Rails.configure do |config|
     :level         => :error,  # only process log events that are "error" or "fatal"
     :layout        => layout
   ) if config.log_to.include? 'email'
+=end
 
   # Setup the root logger with the Rails log level and the desired set of
   # appenders. The list of appenders to use should be set in the environment
@@ -100,12 +104,9 @@ Logging::Rails.configure do |config|
   # its own open file descriptor for `flock` to function properly. Reopening
   # the file descriptors after forking ensures that each worker has a unique
   # file descriptor.
-  #
-  if defined?(PhusionPassenger)
+  if defined? PhusionPassenger
     PhusionPassenger.on_event(:starting_worker_process) do |forked|
       Logging.reopen if forked
     end
   end
-
 end
-
