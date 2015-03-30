@@ -1,9 +1,7 @@
-
 module Logging::Rails
 
   # The Railtie is used to inject the Logging framework into the Rails
   # application.
-  #
   class Railtie < ::Rails::Railtie
 
     generators do
@@ -18,7 +16,7 @@ module Logging::Rails
     initializer 'logging.configure', :before => 'initialize_logger' do |app|
       file = ::Rails.root.join('config/logging.rb')
       load file if File.exists? file
-      ::Logging::Rails.configuration.call app.config if ::Logging::Rails.configuration
+      ::Logging::Rails.configuration.call(app.config) if ::Logging::Rails.configuration
     end
 
     initializer 'logging.initialize', :before => 'initialize_logger' do
@@ -50,7 +48,5 @@ module Logging::Rails
         ::Logging.show_configuration(STDERR)
       end
     end
-
-  end  # Railtie
-end  # Logging::Rails
-
+  end
+end

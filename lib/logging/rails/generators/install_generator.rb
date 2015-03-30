@@ -1,4 +1,3 @@
-
 module Logging::Rails
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
@@ -23,4 +22,3 @@ module Logging::Rails
     end
   end
 end
-
