@@ -35,8 +35,10 @@ module Logging::Rails
       ActiveSupport.on_load(:action_mailer) { self.__send__(:include, ::Logging::Rails::Mixin) }
     end
 
-    initializer 'logging.active_support.dependencies.logger' do
-      ActiveSupport::Dependencies.logger = ::Logging::Logger[ActiveSupport::Dependencies]
+    if ActiveSupport::Dependencies.respond_to? :logger= then
+      initializer 'logging.active_support.dependencies.logger' do
+        ActiveSupport::Dependencies.logger = ::Logging::Logger[ActiveSupport::Dependencies]
+      end
     end
 
     initializer 'logging.initialize_cache', :after => 'initialize_cache' do
