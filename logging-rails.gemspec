@@ -25,18 +25,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<logging>, [">= 1.8"])
       s.add_development_dependency(%q<bones-git>, ["~> 1.3"])
-      s.add_development_dependency(%q<rails>, ["~> 4"])
+      s.add_development_dependency(%q<rails>, [">= 4"])
       s.add_development_dependency(%q<bones>, [">= 3.8.3"])
     else
       s.add_dependency(%q<logging>, [">= 1.8"])
       s.add_dependency(%q<bones-git>, ["~> 1.3"])
-      s.add_dependency(%q<rails>, ["~> 4"])
+      s.add_dependency(%q<rails>, [">= 4"])
       s.add_dependency(%q<bones>, [">= 3.8.3"])
     end
   else
     s.add_dependency(%q<logging>, [">= 1.8"])
     s.add_dependency(%q<bones-git>, ["~> 1.3"])
-    s.add_dependency(%q<rails>, ["~> 4"])
+    s.add_dependency(%q<rails>, [">= 4"])
     s.add_dependency(%q<bones>, [">= 3.8.3"])
   end
 end
