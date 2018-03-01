@@ -31,10 +31,6 @@ module Logging::Rails
       ActiveSupport.on_load(:action_controller) { self.__send__(:include, ::Logging::Rails::Mixin) }
     end
 
-    initializer 'logging.action_view.logger', :before => 'action_view.logger' do
-      ActiveSupport.on_load(:action_view) { self.__send__(:include, ::Logging::Rails::Mixin) }
-    end
-
     initializer 'logging.action_mailer.logger', :before => 'action_mailer.logger' do
       ActiveSupport.on_load(:action_mailer) { self.__send__(:include, ::Logging::Rails::Mixin) }
     end
