@@ -45,8 +45,10 @@ module Logging::Rails
       end
     end
 
-    initializer 'logging.initialize_cache', :after => 'initialize_cache' do
-      ::Rails.cache.logger = ::Logging::Logger[::Rails.cache]
+    if ActiveSupport::Dependencies.respond_to? :logger= then
+      initializer 'logging.initialize_cache', :after => 'initialize_cache' do
+        ::Rails.cache.logger = ::Logging::Logger[::Rails.cache]
+      end
     end
 
     config.after_initialize do |app|
