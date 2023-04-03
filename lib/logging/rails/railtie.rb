@@ -15,7 +15,7 @@ module Logging::Rails
 
     initializer 'logging.configure', :before => 'initialize_logger' do |app|
       file = ::Rails.root.join('config/logging.rb')
-      load file if File.exists? file
+      load file if File.exist? file
       ::Logging::Rails.configuration.call(app.config) if ::Logging::Rails.configuration
     end
 
